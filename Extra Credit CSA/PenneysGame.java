@@ -12,7 +12,7 @@ private int winner3;
 private int hh;
 private int ht;
 public PenneysGame(int g){
-	game=g;
+	game=g+1;
 	hh=flipHH();
 	ht=flipHT();
 	winner1=flipGame1();
@@ -23,12 +23,12 @@ public PenneysGame(int g){
 public int flipHH(){
 	count=0;
 	count++;
-	flip(coin1);
-	flip(coin2);
+	coin1=flip();
+	coin2=flip();
 	while(!coin1 && !coin2){
 		count++;
-		flip(coin1);
-		flip(coin2);
+		coin1=flip();
+		coin2=flip();
 	}
 	return count;
 }
@@ -36,22 +36,22 @@ public int flipHH(){
 public int flipHT(){
 	count=0;
 	count++;
-	flip(coin1);
-	flip(coin2);
-	while((coin1 || coin2) && !(coin1 || coin2)){
+	coin1=flip();
+	coin2=flip();
+	while(!coin1 || coin2){
 		count++;
-		flip(coin1);
-		flip(coin2);
+		coin1=flip();
+		coin2=flip();
 	}
 	return count;
 }
 //method to simulate HH vs HT
 public int flipGame1(){
-	flip(coin1);
-	flip(coin2);
+	coin1=flip();
+	coin2=flip();
 	while(!coin1){
-		flip(coin1);
-		flip(coin2);
+		coin1=flip();
+		coin2=flip();
 	}
 	if(coin2)
 		return 1;
@@ -59,13 +59,13 @@ public int flipGame1(){
 }
 //method to simulate HTT vs HHT
 public int flipGame2(){
-	flip(coin1);
-	flip(coin2);
-	flip(coin3);
-	while (!coin1 && coin3){
-		flip(coin1);
-		flip(coin2);
-		flip(coin3);
+	coin1=flip();
+	coin2=flip();
+	coin3=flip();
+	while (!coin1 || coin3){
+		coin1=flip();
+		coin2=flip();
+		coin3=flip();
 	}
 	if(coin2)
 		return 1;
@@ -73,25 +73,25 @@ public int flipGame2(){
 }
 //method to simulate HHH vs THH
 public int flipGame3(){
-	flip(coin1);
-	flip(coin2);
-	flip(coin3);
-	while (!coin2 && !coin3){
-		flip(coin1);
-		flip(coin2);
-		flip(coin3);
+	coin1=flip();
+	coin2=flip();
+	coin3=flip();
+	while (!coin2 || !coin3){
+		coin1=flip();
+		coin2=flip();
+		coin3=flip();
 	}
 	if(coin1)
 		return 1;
 	return 2;
 }
 //flips coin1+2
-public void flip(boolean coin){
+public boolean flip(){
 	double flip=Math.random();
 	if(Math.random() >= .5)
-		coin=true;
+		return true;
 	else
-		coin=false;
+		return false;
 }
 //GET METHODS
 public int getHT(){
@@ -110,6 +110,6 @@ public int getWin3(){
 	return winner3;
 }
 public String toString(){
-	return "Test "+game+"\nGame 1: It took "+ht+" until HT occured\nIt took "+hh+" until HH occured\nGame 2: Player "+winner1+"won\nGame 3: Player "+winner2+"won\nGame 4: Player "+winner3+"won";
+	return "Test "+game+"\nGame 1: It took "+ht+" until HT occured\nGame 2: It took "+hh+" until HH occured\nGame 3: Player "+winner1+" won\nGame 4: Player "+winner2+" won\nGame 5: Player "+winner3+" won";
 }
 }

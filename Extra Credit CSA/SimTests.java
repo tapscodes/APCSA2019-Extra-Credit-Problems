@@ -78,8 +78,8 @@ class SimTests {
 		while(test<games){
 			PenneysGame game = new PenneysGame(test);
 			System.out.println(game);
-			hh=game.getHH();
-			ht=game.getHH();
+			hh+=game.getHH();
+			ht+=game.getHT();
 			if(game.getWin1()==1)
 			win11++;
 			if(game.getWin2()==1)
@@ -90,7 +90,7 @@ class SimTests {
 		}
 		hh=(int)(hh/games);
 		ht=(int)(ht/games);
-		System.out.println("\nResults: On average it took "+hh+" for 2 heads in a row and "+ht+" for a heads then tails. For game one, player 1 won "+win11+" games of the first type, "+win12+" of the second type, and "+win13+"of the third type out of "+games+" games.");
+		System.out.println("\nResults: On average it took "+hh+" for 2 heads in a row and "+ht+" for a heads then tails. For game one, player 1 won "+win11+" games of the first type, "+win12+" of the second type, and "+win13+" of the third type out of "+games+" games.");
 		skipLines();
 		
 		
@@ -167,6 +167,6 @@ class SimTests {
 			fullClears++;
 			test++;
 		}
-		System.out.println("\nResults:\nOut of "+prisons+" prisons with 100 prisoners, only "+fullClears+" had all 100 prisoners pardoned.");
+		System.out.println("\nResults:\nOut of "+prisons+" prisons with 100 prisoners, "+fullClears+" had all 100 prisoners pardoned.");
 	}
 }

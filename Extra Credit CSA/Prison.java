@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import javax.print.attribute.*;
+
 //Written By Tristan P.-S.
 //class to simulate a single 100 prisoner
 class Prison {
@@ -6,11 +8,10 @@ private ArrayList<Integer> lockers;
 private int game;
 private boolean fullClear;
 public Prison(int g){
-	game=g;
-	fullClear=true;
+	game=g+1;
 	lockers=new ArrayList<Integer>();
 	setUpLockers();
-	openLockers();
+	fullClear=openLockers();
 }
 public void setUpLockers(){
 	int ranNum= 0;
@@ -20,25 +21,22 @@ public void setUpLockers(){
 		}
 }
 //simulates the prisoners attempting the strategy
-public void openLockers(){
+public boolean openLockers(){
 	boolean death=true;
 	int guess=0;
 	for(int i=0;i<100;i++){
 		death=true;
 		guess=i;
 		for(int j=0;j<50;j++){
-			if(i==lockers.get(guess)){
+			if(i==lockers.get(guess))
 			death=false;
-			break;
-			}
 			else
 			guess=lockers.get(guess);
 		}
-		if(death){
-		fullClear=false;
-		break;
-		}
+		if(death)
+		return false;
 	}
+	return true;
 }
 public boolean getFC(){
 	return fullClear;
@@ -49,6 +47,6 @@ public String toString(){
 	occurance="let free";
 	else
 	occurance="executed";
-	return "Prison "+game+" prisoners were "+occurance;
+	return "Prison "+game+": prisoners were "+occurance;
 }
 }

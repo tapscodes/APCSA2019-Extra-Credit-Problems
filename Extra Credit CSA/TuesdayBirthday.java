@@ -7,7 +7,7 @@ private boolean gender1;
 private boolean gender2;
 private int game;
 public TuesdayBirthday(int g){
-	game=g;
+	game=g+1;
 	gender1=setGender();
 	gender2=setGender();
 	bDay1=setBday();
@@ -45,6 +45,6 @@ public String toString(){
 	gen2="M";
 	else 
 	gen2="F";
-	return "Game "+game+"\nChild 1, Gender:"+gen1+", bDay:"+bDay1+"\nChild 2, Gender:"+gen2+", bDay:"+bDay2+"";
+	return "Family "+game+"\nChild 1, Gender:"+gen1+", bDay:"+bDay1+"\nChild 2, Gender:"+gen2+", bDay:"+bDay2+"";
 }
 }

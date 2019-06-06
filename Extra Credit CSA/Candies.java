@@ -6,7 +6,7 @@ private int mints;
 private boolean result;
 private int game;
 public Candies(int g){
-	game=g;
+	game=g+1;
 	caramels=123;
 	mints=321;
 	result=eat();
